@@ -1,0 +1,56 @@
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1; /*goes back*/
+}
+
+hr {
+  margin: 40px 0;
+  border-top: none;
+}
+
+p {
+  color: #e9f2f1;
+}
+
+.bottom {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn:first-child {
+  margin-right: 20px;
+}
+
+button {
+  font-family: "Nirmala UI";
+  font-size: 2.5em;
+  font-weight: bold;
+  border: none;
+  background: #e9f2f1;
+  color: #fe4a73;
+  border-radius: 15px;
+  width: 50px;
+  height: 60px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.clicked {
+  background: #fe4a73;
+  color: #e9f2f1;
+  outline: none;
+}
