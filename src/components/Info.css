@@ -1,13 +1,11 @@
-#bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1; /*goes back*/
-}
-
 hr {
-  margin: 40px 0;
-  border-top: none;
+  color: rgb(112, 170, 218);
+  border-style: inset;
+  border-width: 1px;
+  margin: 0.5em auto;
+  margin-left: 0;
+  margin-right: 0;
+  width: 90%;
 }
 
 p {
@@ -21,36 +19,13 @@ p {
   align-items: center;
 }
 
-.buttons {
+.user-options {
   display: flex;
 }
 
-.btn {
+.user-btn {
   display: flex;
   flex-direction: column;
+  margin: auto 10px;
   align-items: center;
-}
-
-.btn:first-child {
-  margin-right: 20px;
-}
-
-button {
-  font-family: "Nirmala UI";
-  font-size: 2.5em;
-  font-weight: bold;
-  border: none;
-  background: #e9f2f1;
-  color: #fe4a73;
-  border-radius: 15px;
-  width: 50px;
-  height: 60px;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.clicked {
-  background: #fe4a73;
-  color: #e9f2f1;
-  outline: none;
 }
