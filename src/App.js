@@ -6,19 +6,51 @@ import Info from "./components/Info";
 import Country from "./components/Country";
 
 function App() {
-  const [cities, setCities] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [cities1, setCities1] = useState([]);
+  const [cities2, setCities2] = useState([]);
+  const [loading1, setLoading1] = useState(true);
+  const [loading2, setLoading2] = useState(true);
+  const [latitude, setLatitude] = useState(23.777176);
+  const [longitude, setLongitude] = useState(90.399452);
+  const id = [1, 2];
   let [tempSymbol, setTempSymbol] = useState("F");
+
   useEffect(() => {
-    setLoading(true);
-    const url =
-      "http://api.openweathermap.org/data/2.5/group?id=1185241,524901&units=imperial&appid=c2efc4022e0d4e7b80a118feab2ad216";
-    axios.get(url).then((res) => {
-      setLoading(false);
-      console.log(res, res.data.list[0].weather);
-      setCities(res.data.list);
-    });
+    setLoading1(true);
+    axios
+      .get(
+        "https://api.weatherbit.io/v2.0/current?city_id=1185241&key=5cdcbe91365c41e68d36eb79f1ca1c21"
+      )
+      .then((res) => {
+        setLoading1(false);
+        setCities1(res.data.data[0]);
+      })
+      .catch((err) => console.log({ message: err }));
   }, []);
+
+  useEffect(() => {
+    setLoading2(true);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        setLatitude(pos.coords.latitude);
+        setLongitude(pos.coords.longitude);
+        console.log(latitude, longitude);
+      });
+
+      axios
+        .get(
+          `https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=5cdcbe91365c41e68d36eb79f1ca1c21`
+        )
+        .then((res) => {
+          setLoading2(false);
+          setCities2(res.data.data[0]);
+        })
+        .catch((err) => console.log({ message: err }));
+    } else {
+      console.log("not supported");
+    }
+  }, [latitude, longitude]);
+
   return (
     <Box component="main">
       <Grid container justify="center" spacing={2} style={{ height: "80vh" }}>
@@ -28,11 +60,15 @@ function App() {
             setTempSymbol={() => setTempSymbol(tempSymbol === "F" ? "C" : "F")}
           />
         </Grid>
-        <Grid item xs={5} sm={3} md={3}>
-          {!loading && <Country cities={cities[0]} tempSymbol={tempSymbol} />}
+        <Grid item xs={8} sm={3} md={3}>
+          {!loading1 && (
+            <Country tempSymbol={tempSymbol} cities={cities1} id={id[0]} />
+          )}
         </Grid>
-        <Grid item xs={5} sm={3} md={3}>
-          {!loading && <Country cities={cities[1]} tempSymbol={tempSymbol} />}
+        <Grid item xs={8} sm={3} md={3}>
+          {!loading2 && (
+            <Country tempSymbol={tempSymbol} cities={cities2} id={id[1]} />
+          )}
         </Grid>
       </Grid>
     </Box>

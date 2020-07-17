@@ -35,8 +35,11 @@ const useStyles = makeStyles({
     top: 10,
   },
   cardItems: {
+    width: "100%",
     display: "flex",
     alignItems: "center",
+    justifyContent: "space-evenly",
+    marginRight: "5px",
   },
   imgCard: {
     width: "100%",
@@ -63,8 +66,8 @@ const Country = (props) => {
   let currentTemp = 0;
 
   if (props.cities) {
-    let fahrenheit = parseInt(props.cities.main.temp);
-    let celsius = parseInt((fahrenheit - 32) * (5 / 9));
+    let celsius = parseInt(props.cities.app_temp);
+    let fahrenheit = parseInt(celsius * (9 / 5) + 32);
     if (props.tempSymbol === "F") {
       currentTemp = fahrenheit;
     } else {
@@ -76,24 +79,27 @@ const Country = (props) => {
     <Box className={classes.country}>
       <Card className={classes.cardFloat}>
         <Box component="div" className={classes.cardItems}>
-          {props.cities && (
+          {props.cities.weather && (
             <img
-              src={`http://openweathermap.org/img/w/${props.cities.weather[0].icon}.png`}
+              style={{ height: "40px", width: "50px" }}
+              src={`https://www.weatherbit.io/static/img/icons/${props.cities.weather.icon}.png`}
               alt="Icon"
             />
           )}
           <ThemeProvider theme={theme}>
-            <Typography style={{ marginLeft: "4px" }}>
-              {props.cities ? currentTemp : ""}°
+            <Typography align="left" style={{ marginLeft: "4px" }}>
+              {props.cities && currentTemp}°
             </Typography>
           </ThemeProvider>
         </Box>
-        <Typography variant="subtitle2">
-          {props.cities ? props.cities.weather[0].main.toUpperCase() : ""}
-        </Typography>
+        <Box component="div" style={{ marginRight: "2vw" }}>
+          <Typography variant="subtitle2" align="left">
+            {props.cities.weather && props.cities.weather.description}
+          </Typography>
+        </Box>
       </Card>
       <Box className={classes.imgCard}>
-        {props.cities && props.cities.name === "Dhaka" ? (
+        {props.id === 1 ? (
           <img src={ca} alt="Los Angeles" className={classes.countryImg} />
         ) : (
           <img src={ru} alt="Moscow" className={classes.countryImg} />
@@ -102,9 +108,9 @@ const Country = (props) => {
       <Box component="div" className={classes.city}>
         {props.cities && (
           <Box component="div">
-            <Typography>{props.cities.name}</Typography>
+            <Typography>{props.cities.city_name}</Typography>
             <ThemeProvider theme={theme}>
-              <Typography>{props.cities.sys.country}</Typography>
+              <Typography>{props.cities.country_code}</Typography>
             </ThemeProvider>
           </Box>
         )}

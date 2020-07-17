@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Button } from "@material-ui/core";
+import { Box, Typography, Button, Link } from "@material-ui/core";
 import {
   makeStyles,
   createMuiTheme,
@@ -85,6 +85,13 @@ const Info = (props) => {
         A minimal weather app design to brighten up your day.
         <br />
         Designed and developed by Ibrahim Kaiser
+        <br />
+        Frontend - React, Material-UI
+        <br />
+        API -{" "}
+        <Link href="https://www.weatherbit.io/">
+          https://www.weatherbit.io/
+        </Link>
       </Typography>
       <Box component="div" className="bottom">
         <Typography variant="body1">
