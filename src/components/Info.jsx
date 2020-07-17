@@ -84,11 +84,12 @@ const Info = (props) => {
       <Typography variant="subtitle1" style={{ color: "white" }}>
         A minimal weather app design to brighten up your day.
         <br />
-        Designed and developed by Ibrahim Kaiser
+        Designed and developed by{" "}
+        <span style={{ fontStyle: "italic" }}>Ibrahim Kaiser</span>
         <br />
-        Frontend - React, Material-UI
+        <span style={{ color: "#fe4a73" }}>Frontend -</span> React, Material-UI
         <br />
-        API -{" "}
+        <span style={{ color: "#fe4a73" }}>API -</span>{" "}
         <Link href="https://www.weatherbit.io/">
           https://www.weatherbit.io/
         </Link>

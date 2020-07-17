@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Box, Grid } from "@material-ui/core";
+import { Box, Grid, CircularProgress } from "@material-ui/core";
 import "./App.css";
 import Info from "./components/Info";
 import Country from "./components/Country";
@@ -61,13 +61,37 @@ function App() {
           />
         </Grid>
         <Grid item xs={8} sm={3} md={3}>
-          {!loading1 && (
+          {!loading1 ? (
             <Country tempSymbol={tempSymbol} cities={cities1} id={id[0]} />
+          ) : (
+            <Box
+              component="div"
+              style={{
+                minHeight: "60vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <CircularProgress />
+            </Box>
           )}
         </Grid>
         <Grid item xs={8} sm={3} md={3}>
-          {!loading2 && (
+          {!loading2 ? (
             <Country tempSymbol={tempSymbol} cities={cities2} id={id[1]} />
+          ) : (
+            <Box
+              component="div"
+              style={{
+                minHeight: "60vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <CircularProgress color="secondary" />
+            </Box>
           )}
         </Grid>
       </Grid>

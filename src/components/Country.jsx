@@ -93,7 +93,7 @@ const Country = (props) => {
           </ThemeProvider>
         </Box>
         <Box component="div" style={{ marginRight: "2vw" }}>
-          <Typography variant="subtitle2" align="left">
+          <Typography variant="subtitle2" style={{ fontStyle: "italic" }}>
             {props.cities.weather && props.cities.weather.description}
           </Typography>
         </Box>
@@ -108,9 +108,13 @@ const Country = (props) => {
       <Box component="div" className={classes.city}>
         {props.cities && (
           <Box component="div">
-            <Typography>{props.cities.city_name}</Typography>
+            <Typography variant="h6" style={{ color: "white" }}>
+              {props.cities.city_name}
+            </Typography>
             <ThemeProvider theme={theme}>
-              <Typography>{props.cities.country_code}</Typography>
+              <Typography variant="h5" style={{ color: "white" }}>
+                {props.cities.country_code}
+              </Typography>
             </ThemeProvider>
           </Box>
         )}
